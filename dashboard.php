@@ -43,7 +43,18 @@
   </head>
 
   <body>
-      <?php $logado = unserialize($_SESSION["userAtual"]); ?>
+      <?php
+      
+        if(empty($_SESSION["userAtual"])){
+          echo '<script type="text/javascript">';
+          echo 'alert("Usuario não logado.");';
+          echo 'window.location = "sign-up.html";';
+          echo '</script>';
+        }
+
+        $logado = unserialize($_SESSION["userAtual"]); 
+
+      ?>
     <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
       <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#"><?php echo $logado->Nome; ?></a>
       <ul class="navbar-nav px-3">
@@ -155,10 +166,21 @@
             <div class="btn-toolbar mb-2 mb-md-0">
             </div>
           </div>
-
           
         </main>
-        <div id="map"></div>
+      </div>
+      
+      <div class="row">
+        <div class="col-md-9 ml-sm-auto col-lg-10 px-4">
+
+          <?php 
+            if(empty($_SESSION["PetLocal"])){
+              echo '<h3>Pet não foi Selecionado</h3>';
+            }else{
+              echo '<div id="map"></div>';
+            }
+          ?>
+        </div>
       </div>
     </div>
 

@@ -20,13 +20,22 @@
     <!-- Custom styles for this template -->
     <link href="dashboard.css" rel="stylesheet">
   </head>
-<?php $user = unserialize($_SESSION["userAtual"]); ?>
+<?php
+
+if(empty($_SESSION["userAtual"])){
+  echo '<script type="text/javascript">';
+  echo 'alert("Usuario não logado.");';
+  echo 'window.location = "sign-up.html";';
+  echo '</script>';
+}
+
+$user = unserialize($_SESSION["userAtual"]); ?>
   <body>
     <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
       <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#"><?php echo $user->Nome; ?></a>
       <ul class="navbar-nav px-3">
         <li class="nav-item text-nowrap">
-          <a class="nav-link" href="#">Sair</a>
+          <a class="nav-link" href="logout.php">Sair</a>
         </li>
       </ul>
     </nav>
@@ -142,7 +151,7 @@
                         <?php echo $pet->Sexo; ?>
                     </td>
                     <td>
-                        <form action="dashboard.php" method="post">
+                        <form action="abrePetMapa.php" method="post">
                             <input type="hidden" name="inputIdPet" value="<?php echo $pet->IdPet; ?>"/>
                             <input type="submit" class="btn btn-ligh" value="Monitorar"/>
                             <?php $_SESSION["Pet".$pet->IdPet] = serialize($pet); ?>
