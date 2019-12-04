@@ -131,7 +131,7 @@ $user = unserialize($_SESSION["userAtual"]); ?>
       </div>
     </div>
 
-    <form method="post" action="#">
+    <form method="post" action="vincular.php">
       <!-- Modal Anexo -->
       <div class="modal fade" id="myModal" style="display:none;" role="dialog">
         <div class="modal-dialog">
@@ -165,7 +165,8 @@ $user = unserialize($_SESSION["userAtual"]); ?>
               </select>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-primary" onclick="esconde_modal('myModal')" data-dismiss="modal">Fechar</button>
+            <input type="submit" class="btn btn-primary" value="Vincular" />
+              <button type="button" class="btn btn-danger" onclick="esconde_modal('myModal')" data-dismiss="modal">Fechar</button>
             </div>
           </div>
 
